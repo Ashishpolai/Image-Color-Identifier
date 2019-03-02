@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <ImageView
+        android:id="@+id/btn_allcolors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/getcolors"
+        />
+
+    <com.skydoves.multicolorpicker.MultiColorPickerView
+        android:id="@+id/multiColorPickerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btmLayout"
+        />
+
+
+        <RelativeLayout
+            android:id="@+id/btmLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayout0"
+                android:layout_width="155dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"/>
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_changeimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change image"
+        android:padding="15dp"
+        android:layout_toLeftOf="@+id/btmLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/buttonColor"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif-monospace"
+        />
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@android:color/white"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/btmLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:padding="15dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:background="@color/buttonColor"
+        android:fontFamily="serif-monospace"
+        />
+
+    </RelativeLayout>
+
+
