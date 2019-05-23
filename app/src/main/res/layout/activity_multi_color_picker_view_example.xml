@@ -48,8 +48,8 @@
         android:id="@+id/btn_changeimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change image"
-        android:padding="15dp"
+        android:text="Change\nimage"
+        android:padding="10dp"
         android:layout_toLeftOf="@+id/btmLayout"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -70,13 +70,19 @@
         android:layout_toRightOf="@+id/btmLayout"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:padding="15dp"
+        android:padding="10dp"
         android:textStyle="bold"
         android:textSize="20sp"
         android:background="@color/buttonColor"
         android:fontFamily="serif-monospace"
         />
 
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/webView"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
 

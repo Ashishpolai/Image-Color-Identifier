@@ -50,12 +50,17 @@ import com.skydoves.multicolorpicker.listeners.ColorListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+
 import android.os.AsyncTask;
 
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+
+import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -188,14 +193,14 @@ public class MainActivity extends AppCompatActivity {
     private ColorListener colorListener0  = new ColorListener () {
         @Override
         public void onColorSelected(ColorEnvelope envelope) {
-            textView.setText("#" + envelope.getHtmlCode());
+            final int rgb[] = envelope.getRgb();
+            textView.setText("#" + envelope.getHtmlCode()+"\nRGB:["+ rgb[0] + ","+rgb[1]+","+rgb[2]+"]\n"+getColorName(envelope.getHtmlCode(), envelope.getRgb()));
             //textView.setTextColor(envelope.getColor());
 
             linearLayout = findViewById(R.id.linearLayout0);
             linearLayout.setBackgroundColor(envelope.getColor());
         }
     };
-
 
     public void askPermissions(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -2005,5 +2010,118 @@ public class MainActivity extends AppCompatActivity {
         );
 
         sequence.start();
+    }
+
+    private String getColorName(String colorCode, int rgb[]){
+        colorCode = colorCode.toUpperCase();
+
+        if(colorCode.length()<3 && colorCode.length()>7){
+            return "Invalid Colour";
+        }
+        else if(colorCode.length() % 3 == 0){
+            colorCode = "#" +colorCode;
+        }
+
+        int r = rgb[0];
+        int g = rgb[1];
+        int b = rgb[2];
+
+        int hsl[] = getHsl(rgb);
+
+        int h = hsl[0];
+        int s = hsl[1];
+        int l = hsl[2];
+
+        int ndf1 = 0, ndf2 = 0, ndf = 0;
+        int cl = -1, df = -1;
+
+        ArrayList<String> allColorCodeList = colorNameDB.getAllColorCodes();
+        ArrayList<String> allColorNameList = colorNameDB.getAllColorNames();
+
+        for(int i = 0; i < allColorNameList.size(); i++)
+        {
+
+            if(colorCode == "#" + allColorCodeList.get(i))
+                return allColorNameList.get(i);
+
+            char charAtTwo = allColorCodeList.get(i).charAt(0);
+            char charAtThree = allColorCodeList.get(i).charAt(1);
+            char charAtFour = allColorCodeList.get(i).charAt(2);
+            char charAtFive = allColorCodeList.get(i).charAt(3);
+            char charAtSix = allColorCodeList.get(i).charAt(4);
+            char charAtSeven = allColorCodeList.get(i).charAt(5);
+
+            Log.d("asisi", allColorCodeList.get(i)+"\n"+charAtTwo+"-"+charAtThree+"-"+charAtFour+"-"+charAtFive+"-"+charAtSix+"-"+charAtSeven);
+
+            String charAtTwoS = "0", charAtThreeS = "0", charAtFourS = "0", charAtFiveS = "0", charAtSixS = "0", charAtSevenS = "0";
+
+            if(Character.isDigit(charAtTwo))
+                charAtTwoS = charAtTwo+"";
+
+            if(Character.isDigit(charAtThree))
+                charAtThreeS = charAtThree+"";
+
+            if(Character.isDigit(charAtFour))
+                charAtFourS = charAtFour+"";
+
+            if(Character.isDigit(charAtFive))
+                charAtFiveS = charAtFive+"";
+
+            if(Character.isDigit(charAtSix))
+                charAtSixS = charAtSix+"";
+
+            if(Character.isDigit(charAtSeven))
+                charAtSevenS = charAtSeven+"";
+
+            ndf1 = (int) (Math.pow(r - parseInt(charAtTwoS), 2) + Math.pow(g - parseInt(charAtThreeS), 2) + Math.pow(b - parseInt(charAtFourS), 2));
+            ndf2 = (int) (Math.pow(h - parseInt(charAtFiveS), 2) + Math.pow(s - parseInt(charAtSixS), 2) + Math.pow(l - parseInt(charAtSevenS), 2));
+            ndf = ndf1 + ndf2 * 2;
+            if(df < 0 || df > ndf)
+            {
+                df = ndf;
+                cl = i;
+            }
+        }
+
+        if(cl>0){
+            return allColorNameList.get(cl);
+        }
+        else{
+            return "Unnamed Colour";
+        }
+
+
+    }
+
+    private int[] getHsl(int rgb[]){
+        int r = rgb[0];
+        int g = rgb[1];
+        int b = rgb[2];
+
+        int min, max, delta, h, s, l;
+
+        min = Math.min(r, Math.min(g, b));
+        max = Math.max(r, Math.max(g, b));
+        delta = max - min;
+        l = (min + max) / 2;
+
+        s = 0;
+        if(l > 0 && l < 1)
+            s = delta / (l < 0.5 ? (2 * l) : (2 - 2 * l));
+
+        h = 0;
+        if(delta > 0)
+        {
+            if (max == r && max != g) h += (g - b) / delta;
+            if (max == g && max != b) h += (2 + (b - r) / delta);
+            if (max == b && max != r) h += (4 + (r - g) / delta);
+            h /= 6;
+        }
+
+        int hsl[] = new int[3];
+        hsl[0] = Integer.valueOf(h*225);
+        hsl[1] = Integer.valueOf(s*225);
+        hsl[2] = Integer.valueOf(l*225);
+        return hsl;
     }
 }

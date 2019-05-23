@@ -27,5 +27,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:15.0.1'
     compile 'com.github.deano2390:MaterialShowcaseView:1.2.0@aar'
     compile 'com.android.support:cardview-v7:26.1.0'
+    implementation 'org.jsoup:jsoup:1.11.2'
 
 }
