@@ -213,7 +213,7 @@ public class AllColorActivity extends Activity {
                 e.printStackTrace();
             }
 
-            holder.txtColorCode.setText("#"+colorCodeList.get(position)+"\nRGB:"+rgbValue);
+            holder.txtColorCode.setText("#"+colorCodeList.get(position)+"\nRGB:\n"+rgbValue);
             holder.txtColorName.setText(colroname);
             holder.colorDemo.setBackgroundColor(Color.parseColor("#"+colorCodeList.get(position)));
 

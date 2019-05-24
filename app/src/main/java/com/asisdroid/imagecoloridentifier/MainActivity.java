@@ -415,14 +415,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void initColorNameHashMap(){
         //Log.d("asisi","insertstart");
-        colorNameDB.insertNewColorData("4C4F56","Abbey","{\"rgb\" : [27,20,4]}");
+        colorNameDB.insertNewColorData("4C4F56","Abbey","{\"rgb\" : [76,79,86]}");
         colorNameDB.insertNewColorData("1B1404","Acadia","{\"rgb\" : [27,20,4]}");
-        colorNameDB.insertNewColorData("7CB0A1","Acapulco","{\"rgb\" : [27,20,4]}");
-        colorNameDB.insertNewColorData("C9FFE5","Aero Blue","{\"rgb\" : [27,20,4]}");
-        colorNameDB.insertNewColorData("714693","Affair","{\"rgb\" : [27,20,4]}");
-        colorNameDB.insertNewColorData("D4C4A8","Akaroa","{\"rgb\" : [27,20,4]}");
+        colorNameDB.insertNewColorData("7CB0A1","Acapulco","{\"rgb\" : [124, 176, 161]}");
+        colorNameDB.insertNewColorData("C9FFE5","Aero Blue","{\"rgb\" : [201, 255, 229]}");
+        colorNameDB.insertNewColorData("714693","Affair","{\"rgb\" : [113, 70, 147]}");
+        colorNameDB.insertNewColorData("D4C4A8","Akaroa","{\"rgb\" : [212, 196, 168]}");
         //Log.d("asisi","insertend="+colorNameDB.getColorName("4C4F56"),"{\"rgb\" : [27,20,4]}");
-        colorNameDB.insertNewColorData("FAFAFA","Alabaster","{\"rgb\" : [27,20,4]}");
+        colorNameDB.insertNewColorData("FAFAFA","Alabaster","{\"rgb\" : [250, 250, 250]}");
         colorNameDB.insertNewColorData("F5E9D3","Albescent White","{\"rgb\" : [27,20,4]}");
         colorNameDB.insertNewColorData("93DFB8","Algae Green","{\"rgb\" : [27,20,4]}");
         colorNameDB.insertNewColorData("F0F8FF","Alice Blue","{\"rgb\" : [27,20,4]}");
@@ -2058,6 +2058,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<String> allColorCodeList = colorNameDB.getAllColorCodes();
         ArrayList<String> allColorNameList = colorNameDB.getAllColorNames();
+        ArrayList<String> allColourRgbList = colorNameDB.getAllColorRGB();
 
         int shortestRgbDistance = 10000;
         String approxColourName = "Unnamed Colour";
@@ -2068,7 +2069,7 @@ public class MainActivity extends AppCompatActivity {
                 return allColorNameList.get(i);
 
             try {
-                final JSONObject obj = new JSONObject("{\"rgb\" : [27,20,4]}");
+                final JSONObject obj = new JSONObject(allColourRgbList.get(i));
                 final JSONArray rgbArray = obj.getJSONArray("rgb");
                 final int rgbDistance = Math.abs(rgb[0] - rgbArray.getInt(0)) +
                         Math.abs(rgb[1] - rgbArray.getInt(1)) +
