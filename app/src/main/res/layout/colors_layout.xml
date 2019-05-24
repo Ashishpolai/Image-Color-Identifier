@@ -34,8 +34,19 @@
         android:layout_below="@+id/txt_colroname"
         android:background="@color/colorAccent"
         android:orientation="horizontal"
+        android:gravity="center"
         >
-
+            <TextView
+                android:id="@+id/txt_colorrgb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rgbstring"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/buttonColor"
+                android:background="@color/DrawerTransaprentBG_60"
+                android:padding="3dp"
+                />
     </LinearLayout>
 
     <TextView

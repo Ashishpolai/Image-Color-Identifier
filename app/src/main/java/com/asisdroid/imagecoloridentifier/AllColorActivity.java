@@ -184,6 +184,7 @@ public class AllColorActivity extends Activity {
                         R.layout.colors_layout, null);
                 holder.txtColorCode = (TextView) convertView.findViewById(R.id.txt_colorcode);
                 holder.txtColorName = (TextView) convertView.findViewById(R.id.txt_colroname);
+                holder.txtColorRgb = (TextView) convertView.findViewById(R.id.txt_colorrgb);
                 holder.colorDemo = (LinearLayout) convertView.findViewById(R.id.color_demo);
                 holder.colorFullLayout = (CardView) convertView.findViewById(R.id.color_layout);
 
@@ -213,8 +214,9 @@ public class AllColorActivity extends Activity {
                 e.printStackTrace();
             }
 
-            holder.txtColorCode.setText("#"+colorCodeList.get(position)+"\nRGB:\n"+rgbValue);
+            holder.txtColorCode.setText("#"+colorCodeList.get(position));
             holder.txtColorName.setText(colroname);
+            holder.txtColorRgb.setText("RGB:"+rgbValue);
             holder.colorDemo.setBackgroundColor(Color.parseColor("#"+colorCodeList.get(position)));
 
             holder.colorFullLayout.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +233,7 @@ public class AllColorActivity extends Activity {
     }
 
     class ViewHolder {
-        TextView txtColorName, txtColorCode;
+        TextView txtColorName, txtColorCode, txtColorRgb;
         LinearLayout colorDemo;
         CardView colorFullLayout;
     }

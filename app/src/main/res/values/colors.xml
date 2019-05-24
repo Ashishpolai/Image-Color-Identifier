@@ -7,4 +7,9 @@
     <color name="btnColor">#30354b</color>
     <color name="buttonColor">#DCDCDC</color>
     <color name="bgcolor">#EEEEEE</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="black">#000000</color>
+    <color name="DrawerTransaprentBG">#30000000</color>
+    <color name="DrawerTransaprentBG_50">#50000000</color>
+    <color name="DrawerTransaprentBG_60">#60000000</color>
 </resources>
