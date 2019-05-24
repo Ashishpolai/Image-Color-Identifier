@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class ColorDBAdpater extends SQLiteOpenHelper {
     static final String DATABASE_NAME = "imagecoloridentifierasisdroi.db";
-    static final int DATABASE_VERSION = 1;
+    static final int DATABASE_VERSION = 2;
     public static final int NAME_COLUMN = 1;
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table " + "COLOR_NAME_WITH_CODE" +
-            "( CODE text, NAME text)";
+            "( CODE text, NAME text, RGB text)";
     // Variable to hold the database instance
     public SQLiteDatabase db;
     // Context of the application using the database.
@@ -35,9 +35,12 @@ public class ColorDBAdpater extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS COLOR_NAME_WITH_CODE");
-        onCreate(db);
+        // TODO Auto-generated method
+        if (newVersion > oldVersion) {
+            db.execSQL("ALTER TABLE COLOR_NAME_WITH_CODE ADD COLUMN RGB text DEFAULT null");
+        }
+        /*db.execSQL("DROP TABLE IF EXISTS COLOR_NAME_WITH_CODE");
+        onCreate(db);*/
     }
 
     public ColorDBAdpater open() throws SQLException {
@@ -62,6 +65,22 @@ public class ColorDBAdpater extends SQLiteOpenHelper {
             // Insert the row into your table
             db.insertWithOnConflict("COLOR_NAME_WITH_CODE", null, newValues, SQLiteDatabase.CONFLICT_REPLACE);
             return true;
+
+
+        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
+
+    }
+
+    public boolean insertNewColorData(String code, String name, String rgb) {
+
+        ContentValues newValues = new ContentValues();
+        // Assign values for each row.
+        newValues.put("CODE", code);
+        newValues.put("NAME", name);
+        newValues.put("RGB", rgb);
+        // Insert the row into your table
+        db.insertWithOnConflict("COLOR_NAME_WITH_CODE", null, newValues, SQLiteDatabase.CONFLICT_REPLACE);
+        return true;
 
 
         ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
@@ -161,6 +180,23 @@ public class ColorDBAdpater extends SQLiteOpenHelper {
             res.close();
         }
         return colornameList;
+    }
+
+    public ArrayList getAllColorRGB() {
+        ArrayList<String> colorcodeList = new ArrayList<>();
+        Cursor res = null;
+        try {
+            res = db.query("COLOR_NAME_WITH_CODE", new String[]{"RGB"}, null, null, null, null, null);
+            if (res != null && res.moveToFirst()) {
+                while (res.moveToNext()) {
+                    colorcodeList.add(res.getString(res.getColumnIndex("RGB")));
+                }
+            }
+        }
+        finally {
+            res.close();
+        }
+        return colorcodeList;
     }
 }
 

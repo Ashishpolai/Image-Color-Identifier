@@ -39,6 +39,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.skydoves.multicolorpicker.ColorEnvelope;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
@@ -52,7 +56,7 @@ public class AllColorActivity extends Activity {
 
     public ColorDBAdpater colorNameDB;
 
-    private ArrayList<String> colorNameList, colorCodeList;
+    private ArrayList<String> colorNameList, colorCodeList, colorRgbList;
 
     private ClipboardManager clipboard;
 
@@ -199,7 +203,17 @@ public class AllColorActivity extends Activity {
                 colroname = colroname.substring(0,7)+"..";
             }
 
-            holder.txtColorCode.setText("#"+colorCodeList.get(position));
+            String rgbValue = "";
+            try {
+                final JSONObject obj = new JSONObject(colorRgbList.get(position));
+                final JSONArray rgbArray = obj.getJSONArray("rgb");
+                rgbValue = "("+rgbArray.getInt(0)+","+rgbArray.getInt(1)+","+rgbArray.getInt(2)+")";
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            holder.txtColorCode.setText("#"+colorCodeList.get(position)+"\nRGB:"+rgbValue);
             holder.txtColorName.setText(colroname);
             holder.colorDemo.setBackgroundColor(Color.parseColor("#"+colorCodeList.get(position)));
 
@@ -306,6 +320,7 @@ public class AllColorActivity extends Activity {
             //Log.d("asisi","started");
             colorNameList = colorNameDB.getAllColorNames();
             colorCodeList = colorNameDB.getAllColorCodes();
+            colorRgbList = colorNameDB.getAllColorRGB();
             return null;
         }
 
