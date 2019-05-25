@@ -48,7 +48,7 @@
                     android:id="@+id/txt_colorname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="White"
+                    android:text=""
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:textColor="@color/buttonColor"

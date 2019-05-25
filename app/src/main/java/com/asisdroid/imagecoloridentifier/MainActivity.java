@@ -31,6 +31,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -96,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_multi_color_picker_view_example);
 
         MobileAds.initialize(this, getResources().getString(R.string.admobappID));
@@ -214,10 +217,8 @@ public class MainActivity extends AppCompatActivity {
             selectedColorCode = envelope.getHtmlCode();
             textView.setText("#" + selectedColorCode + "\nRGB:[" + selected_rgb[0] + "," + selected_rgb[1] + "," + selected_rgb[2] + "]");
 
-            if(firstTime.getBoolean("isInserted", false)) {
                 if(txtColorName!=null)
                     txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
-            }
             //textView.setTextColor(envelope.getColor());
 
             linearLayout = findViewById(R.id.linearLayout0);
@@ -415,8 +416,8 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
 
             SharedPreferences.Editor editorDB = firstTimeDb.edit();
-            editor.putBoolean("isInserted", true);
-            editor.commit();
+            editorDB.putBoolean("isInserted", true);
+            editorDB.commit();
             if(btnAllColors!=null)
                 btnAllColors.setVisibility(View.VISIBLE);
 
@@ -2055,6 +2056,14 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(colorCode.length() % 3 == 0){
             colorCode = "#" +colorCode;
+        }
+
+        if(firstTime.getAll().size()==0 || firstTimeDb.getAll().size()==0){
+            txtColorName.setVisibility(View.GONE);
+            return "";
+        }
+        else{
+            txtColorName.setVisibility(View.VISIBLE);
         }
 
         ArrayList<String> allColorCodeList = colorNameDB.getAllColorCodes();
