@@ -2018,8 +2018,8 @@ public class MainActivity extends AppCompatActivity {
         sequence.addSequenceItem(
                 new MaterialShowcaseView.Builder(this)
                         .setTarget(findViewById(R.id.btn_allcolors))
-                        .setTitleText("EXPLORE 1500 COLORS")
-                        .setContentText("Click and explore among more than 1500 different colors with their names and color codes.")
+                        .setTitleText("EXPLORE 1600 COLORS")
+                        .setContentText("Click and explore among more than 1600 different colors with their names and color codes.")
                         .withCircleShape()
                         .setDismissOnTargetTouch(true)
                         .setDismissOnTouch(true)
