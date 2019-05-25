@@ -220,11 +220,12 @@ public class AllColorActivity extends Activity {
             holder.txtColorName.setText(colroname);
             holder.txtColorRgb.setText("RGB:"+rgbValue);
             holder.colorDemo.setBackgroundColor(Color.parseColor("#"+colorCodeList.get(position)));
-
+            final String copyRgbVal = rgbValue;
             holder.colorFullLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ClipData clip = ClipData.newPlainText("Image color identifier", colorNameList.get(position)+"( #"+colorCodeList.get(position)+" )");
+                    ClipData clip = ClipData.newPlainText("Image color identifier", colorNameList.get(position)+"( #"+colorCodeList.get(position)+" )\nRGB:"+
+                            copyRgbVal);
                     clipboard.setPrimaryClip(clip);
                     Toast.makeText(AllColorActivity.this, "Copied to clipboard.", Toast.LENGTH_SHORT).show();
                 }

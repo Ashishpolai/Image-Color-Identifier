@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    ClipData clip = ClipData.newPlainText("Image color identifier", textView.getText());
+                    ClipData clip = ClipData.newPlainText("Image color identifier", txtColorName.getText()+" ("+textView.getText().toString().substring(0,6)+") ("+textView.getText().toString().substring(7)+")");
                     clipboard.setPrimaryClip(clip);
                     Toast.makeText(MainActivity.this, "Copied to clipboard.", Toast.LENGTH_SHORT).show();
             }
