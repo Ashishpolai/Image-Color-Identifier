@@ -41,7 +41,21 @@
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/white"
                 android:layout_centerHorizontal="true"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/txt_colorname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="White"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/buttonColor"
+                    android:background="@color/DrawerTransaprentBG_60"
+                    android:padding="4dp"
+                    />
+            </LinearLayout>
         </RelativeLayout>
 
     <Button

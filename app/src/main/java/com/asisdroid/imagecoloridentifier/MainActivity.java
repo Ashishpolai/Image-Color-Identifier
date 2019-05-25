@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     Uri uriSavedImage;
 
     private int width, height;
-    private static TextView textView;
+    private static TextView textView, txtColorName;
     private static ClipboardManager clipboard;
 
     private SharedPreferences permissionStatus, firstTime;
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         textView = findViewById(R.id.textView0);
+        txtColorName = findViewById(R.id.txt_colorname);
         multiColorPickerView = findViewById(R.id.multiColorPickerView);
         multiColorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.bgimg));
         multiColorPickerView.addSelector(ContextCompat.getDrawable(this, R.drawable.wheel), colorListener0);
@@ -203,13 +204,9 @@ public class MainActivity extends AppCompatActivity {
         public void onColorSelected(ColorEnvelope envelope) {
             selected_rgb = envelope.getRgb();
             selectedColorCode = envelope.getHtmlCode();
-            if(!firstTime.getBoolean("isShown", false)) {
-                textView.setText("#" + selectedColorCode + "\nRGB:[" + selected_rgb[0] + "," + selected_rgb[1] + "," + selected_rgb[2] + "]");
-            }
-            else{
-                textView.setText("#" + selectedColorCode + "\nRGB:[" + selected_rgb[0] + "," + selected_rgb[1] + "," + selected_rgb[2] + "]\n"+
-                        getColorName(selectedColorCode, selected_rgb));
-            }
+            textView.setText("#" + selectedColorCode + "\nRGB:[" + selected_rgb[0] + "," + selected_rgb[1] + "," + selected_rgb[2] + "]");
+            if(txtColorName!=null)
+                txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
             //textView.setTextColor(envelope.getColor());
 
             linearLayout = findViewById(R.id.linearLayout0);
@@ -405,9 +402,8 @@ public class MainActivity extends AppCompatActivity {
             if(btnAllColors!=null)
                 btnAllColors.setVisibility(View.VISIBLE);
 
-            if(textView!=null){
-                textView.setText(textView.getText()+"\n"+getColorName(selectedColorCode, selected_rgb));
-            }
+            if(txtColorName!=null)
+                //txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
             Log.d("asisi","finished");
         }
     }
@@ -571,7 +567,7 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("E4D1C0","Bone","{\"rgb\" : [228, 209, 192]}");
         colorNameDB.insertNewColorData("5C0120","Bordeaux","{\"rgb\" : [92, 1, 32]}");
         colorNameDB.insertNewColorData("4E2A5A","Bossanova","{\"rgb\" : [78, 42, 90]}");
-        colorNameDB.insertNewColorData("3B91B4","Boston Blue","{\"rgb\" : [(59, 145, 180]}");
+        colorNameDB.insertNewColorData("3B91B4","Boston Blue","{\"rgb\" : [59, 145, 180]}");
         colorNameDB.insertNewColorData("C7DDE5","Botticelli","{\"rgb\" : [199, 221, 229]}");
         colorNameDB.insertNewColorData("093624","Bottle Green","{\"rgb\" : [9, 54, 36]}");
         colorNameDB.insertNewColorData("7A7A7A","Boulder","{\"rgb\" : [122, 122, 122]}");
@@ -959,7 +955,7 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("228B22","Forest Green","{\"rgb\" : [34, 139, 34]}");
         colorNameDB.insertNewColorData("FFF1EE","Forget Me Not","{\"rgb\" : [255, 241, 238]}");
         colorNameDB.insertNewColorData("56B4BE","Fountain Blue","{\"rgb\" : [86, 180, 190]}");
-        colorNameDB.insertNewColorData("FFDEB3","Frangipani","{\"rgb\" : [255, 222, 179}");
+        colorNameDB.insertNewColorData("FFDEB3","Frangipani","{\"rgb\" : [255, 222, 179]}");
         colorNameDB.insertNewColorData("BDBDC6","French Gray","{\"rgb\" : [189, 189, 198]}");
         colorNameDB.insertNewColorData("ECC7EE","French Lilac","{\"rgb\" : [236, 199, 238]}");
         colorNameDB.insertNewColorData("BDEDFD","French Pass","{\"rgb\" : [189, 237, 253]}");
@@ -1576,12 +1572,12 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("FFFEF0","Rice Cake","{\"rgb\" : [255, 254, 240]}");
         colorNameDB.insertNewColorData("EEFFE2","Rice Flower","{\"rgb\" : [238, 255, 226]}");
         colorNameDB.insertNewColorData("A85307","Rich Gold","{\"rgb\" : [168, 83, 7]}");
-        colorNameDB.insertNewColorData("BBD009","Rio Grande","{\"rgb\" : [(187, 208, 9]}");
+        colorNameDB.insertNewColorData("BBD009","Rio Grande","{\"rgb\" : [187, 208, 9]}");
         colorNameDB.insertNewColorData("F4D81C","Ripe Lemon","{\"rgb\" : [244, 216, 28]}");
         colorNameDB.insertNewColorData("410056","Ripe Plum","{\"rgb\" : [65, 0, 86]}");
         colorNameDB.insertNewColorData("8BE6D8","Riptide","{\"rgb\" : [139, 230, 216]}");
         colorNameDB.insertNewColorData("434C59","River Bed","{\"rgb\" : [67, 76, 89]}");
-        colorNameDB.insertNewColorData("EAC674","Rob Roy","{\"rgb\" : [(234, 198, 116]}");
+        colorNameDB.insertNewColorData("EAC674","Rob Roy","{\"rgb\" : [234, 198, 116]}");
         colorNameDB.insertNewColorData("00CCCC","Robin's Egg Blue","{\"rgb\" : [0, 204, 204]}");
         colorNameDB.insertNewColorData("4D3833","Rock","{\"rgb\" : [77, 56, 51]}");
         colorNameDB.insertNewColorData("9EB1CD","Rock Blue","{\"rgb\" : [158, 177, 205]}");
@@ -2043,19 +2039,6 @@ public class MainActivity extends AppCompatActivity {
             colorCode = "#" +colorCode;
         }
 
-        int r = rgb[0];
-        int g = rgb[1];
-        int b = rgb[2];
-
-        int hsl[] = getHsl(rgb);
-
-        int h = hsl[0];
-        int s = hsl[1];
-        int l = hsl[2];
-
-        int ndf1 = 0, ndf2 = 0, ndf = 0;
-        int cl = -1, df = -1;
-
         ArrayList<String> allColorCodeList = colorNameDB.getAllColorCodes();
         ArrayList<String> allColorNameList = colorNameDB.getAllColorNames();
         ArrayList<String> allColourRgbList = colorNameDB.getAllColorRGB();
@@ -2089,89 +2072,5 @@ public class MainActivity extends AppCompatActivity {
         else{
             return approxColourName;
         }
-
-         /*for(int i = 0; i < allColorNameList.size(); i++)
-        {
-
-            if(colorCode == "#" + allColorCodeList.get(i))
-                return allColorNameList.get(i);
-
-            char charAtTwo = allColorCodeList.get(i).charAt(0);
-            char charAtThree = allColorCodeList.get(i).charAt(1);
-            char charAtFour = allColorCodeList.get(i).charAt(2);
-            char charAtFive = allColorCodeList.get(i).charAt(3);
-            char charAtSix = allColorCodeList.get(i).charAt(4);
-            char charAtSeven = allColorCodeList.get(i).charAt(5);
-
-            Log.d("asisi", allColorCodeList.get(i)+"\n"+charAtTwo+"-"+charAtThree+"-"+charAtFour+"-"+charAtFive+"-"+charAtSix+"-"+charAtSeven);
-
-            String charAtTwoS = "0", charAtThreeS = "0", charAtFourS = "0", charAtFiveS = "0", charAtSixS = "0", charAtSevenS = "0";
-
-            if(Character.isDigit(charAtTwo))
-                charAtTwoS = charAtTwo+"";
-
-            if(Character.isDigit(charAtThree))
-                charAtThreeS = charAtThree+"";
-
-            if(Character.isDigit(charAtFour))
-                charAtFourS = charAtFour+"";
-
-            if(Character.isDigit(charAtFive))
-                charAtFiveS = charAtFive+"";
-
-            if(Character.isDigit(charAtSix))
-                charAtSixS = charAtSix+"";
-
-            if(Character.isDigit(charAtSeven))
-                charAtSevenS = charAtSeven+"";
-
-            ndf1 = (int) (Math.pow(r - parseInt(charAtTwoS), 2) + Math.pow(g - parseInt(charAtThreeS), 2) + Math.pow(b - parseInt(charAtFourS), 2));
-            ndf2 = (int) (Math.pow(h - parseInt(charAtFiveS), 2) + Math.pow(s - parseInt(charAtSixS), 2) + Math.pow(l - parseInt(charAtSevenS), 2));
-            ndf = ndf1 + ndf2 * 2;
-            if(df < 0 || df > ndf)
-            {
-                df = ndf;
-                cl = i;
-            }
-        }
-
-        if(cl>0){
-            return allColorNameList.get(cl);
-        }
-        else{
-            return "Unnamed Colour";
-        }*/
-    }
-
-    private int[] getHsl(int rgb[]){
-        int r = rgb[0];
-        int g = rgb[1];
-        int b = rgb[2];
-
-        int min, max, delta, h, s, l;
-
-        min = Math.min(r, Math.min(g, b));
-        max = Math.max(r, Math.max(g, b));
-        delta = max - min;
-        l = (min + max) / 2;
-
-        s = 0;
-        if(l > 0 && l < 1)
-            s = delta / (l < 0.5 ? (2 * l) : (2 - 2 * l));
-
-        h = 0;
-        if(delta > 0)
-        {
-            if (max == r && max != g) h += (g - b) / delta;
-            if (max == g && max != b) h += (2 + (b - r) / delta);
-            if (max == b && max != r) h += (4 + (r - g) / delta);
-            h /= 6;
-        }
-
-        int hsl[] = new int[3];
-        hsl[0] = Integer.valueOf(h*225);
-        hsl[1] = Integer.valueOf(s*225);
-        hsl[2] = Integer.valueOf(l*225);
-        return hsl;
     }
 }
