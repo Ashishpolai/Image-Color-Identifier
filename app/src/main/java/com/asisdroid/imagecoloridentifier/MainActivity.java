@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private static TextView textView, txtColorName;
     private static ClipboardManager clipboard;
 
-    private SharedPreferences permissionStatus, firstTime;
+    private SharedPreferences permissionStatus, firstTime, firstTimeDb;
     private static final int EXTERNAL_STORAGE_PERMISSION_CONSTANT = 2200;
     private static final int REQUEST_PERMISSION_SETTING = 2031;
     private static final int CAMERA_REQUEST_CODE = 041;
@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         permissionStatus = getSharedPreferences("imagecoloridentifier",MODE_PRIVATE);
         firstTime = getSharedPreferences("imagecoloridentifierfirstftisme",MODE_PRIVATE);
+        firstTimeDb = getSharedPreferences("imagecoloridentifierfirstftismeDB",MODE_PRIVATE);
 
         btnChngeImg = (Button) findViewById(R.id.btn_changeimg);
         btnChngeImg.setOnClickListener(new View.OnClickListener() {
@@ -191,8 +192,12 @@ public class MainActivity extends AppCompatActivity {
         //Call this only for the first time
         colorNameDB = new ColorDBAdpater(this);
         colorNameDB = colorNameDB.open();
-        if(firstTime.getAll().size()==0) {
+
+        if(firstTimeDb.getAll().size()==0){
             new InsertDBData().execute();
+        }
+
+        if(firstTime.getAll().size()==0) {
             presentShowcaseView(); //Startup show tips for the first time
         }
 
@@ -206,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
             selectedColorCode = envelope.getHtmlCode();
             textView.setText("#" + selectedColorCode + "\nRGB:[" + selected_rgb[0] + "," + selected_rgb[1] + "," + selected_rgb[2] + "]");
 
-            if(firstTime.getBoolean("isShown", false)) {
+            if(firstTimeDb.getBoolean("isInserted", false)) {
                 if(txtColorName!=null)
                     txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
             }
@@ -401,6 +406,10 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             SharedPreferences.Editor editor = firstTime.edit();
             editor.putBoolean("isShown", true);
+            editor.commit();
+
+            SharedPreferences.Editor editorDB = firstTimeDb.edit();
+            editor.putBoolean("isInserted", true);
             editor.commit();
             if(btnAllColors!=null)
                 btnAllColors.setVisibility(View.VISIBLE);
