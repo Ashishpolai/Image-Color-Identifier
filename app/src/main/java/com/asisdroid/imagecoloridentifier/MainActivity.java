@@ -205,8 +205,11 @@ public class MainActivity extends AppCompatActivity {
             selected_rgb = envelope.getRgb();
             selectedColorCode = envelope.getHtmlCode();
             textView.setText("#" + selectedColorCode + "\nRGB:[" + selected_rgb[0] + "," + selected_rgb[1] + "," + selected_rgb[2] + "]");
-            if(txtColorName!=null)
-                txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
+
+            if(firstTime.getBoolean("isShown", false)) {
+                if(txtColorName!=null)
+                    txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
+            }
             //textView.setTextColor(envelope.getColor());
 
             linearLayout = findViewById(R.id.linearLayout0);
@@ -403,7 +406,7 @@ public class MainActivity extends AppCompatActivity {
                 btnAllColors.setVisibility(View.VISIBLE);
 
             if(txtColorName!=null)
-                //txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
+                txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
             Log.d("asisi","finished");
         }
     }
