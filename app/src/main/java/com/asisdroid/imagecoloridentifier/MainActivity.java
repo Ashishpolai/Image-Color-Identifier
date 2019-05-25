@@ -193,11 +193,14 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB = new ColorDBAdpater(this);
         colorNameDB = colorNameDB.open();
 
-        if(firstTimeDb.getAll().size()==0){
+        //Firsttime RGB update
+        if(firstTime.getAll().size()!=0 && firstTimeDb.getAll().size()==0){
             new InsertDBData().execute();
         }
 
+        //Firsttime login
         if(firstTime.getAll().size()==0) {
+            new InsertDBData().execute();
             presentShowcaseView(); //Startup show tips for the first time
         }
 
@@ -211,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             selectedColorCode = envelope.getHtmlCode();
             textView.setText("#" + selectedColorCode + "\nRGB:[" + selected_rgb[0] + "," + selected_rgb[1] + "," + selected_rgb[2] + "]");
 
-            if(firstTimeDb.getBoolean("isInserted", false)) {
+            if(firstTime.getBoolean("isInserted", false)) {
                 if(txtColorName!=null)
                     txtColorName.setText(getColorName(selectedColorCode, selected_rgb));
             }
@@ -397,6 +400,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             Log.d("asisi","started");
+            if(firstTime.getAll().size()!=0 && firstTimeDb.getAll().size()==0){
+                colorNameDB.deleteAllColorData();
+            }
             initColorNameHashMap();
             return null;
         }

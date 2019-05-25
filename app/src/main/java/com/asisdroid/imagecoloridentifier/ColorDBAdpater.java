@@ -87,6 +87,8 @@ public class ColorDBAdpater extends SQLiteOpenHelper {
 
     }
 
+
+
     public int deleteAllColorData() {
         int numberOFEntriesDeleted = db.delete("COLOR_NAME_WITH_CODE", null, null);
         // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
