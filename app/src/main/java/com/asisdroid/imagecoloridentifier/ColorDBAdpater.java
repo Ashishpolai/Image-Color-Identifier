@@ -136,7 +136,7 @@ public class ColorDBAdpater extends SQLiteOpenHelper {
         Cursor res = null;
 
         try {
-            res = db.query("COLOR_NAME_WITH_CODE", new String[]{"NAME"}, "NAME like ?", new String[] { "%"+colors+"%" }, null, null, null);
+            res = db.query("COLOR_NAME_WITH_CODE", new String[]{"NAME"}, "NAME like ?", new String[] { "%"+colors.trim()+"%" }, null, null, null);
             if (res != null && res.moveToFirst()) {
                 while (res.moveToNext()) {
                     colornameList.add(res.getString(res.getColumnIndex("NAME")));
@@ -171,7 +171,7 @@ public class ColorDBAdpater extends SQLiteOpenHelper {
         Cursor res = null;
 
         try {
-            res = db.query("COLOR_NAME_WITH_CODE", new String[]{"CODE"}, "NAME like ?", new String[] { "%"+colors+"%" }, null, null, null);
+            res = db.query("COLOR_NAME_WITH_CODE", new String[]{"CODE"}, "NAME like ?", new String[] { "%"+colors.trim()+"%" }, null, null, null);
             if (res != null && res.moveToFirst()) {
                 while (res.moveToNext()) {
                     colornameList.add(res.getString(res.getColumnIndex("CODE")));

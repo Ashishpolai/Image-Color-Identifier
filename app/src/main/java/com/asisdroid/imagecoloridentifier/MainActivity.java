@@ -1068,6 +1068,7 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("9DACB7","Gull Gray","{\"rgb\" : [157, 172, 183]}");
         colorNameDB.insertNewColorData("B6D3BF","Gum Leaf","{\"rgb\" : [182, 211, 191]}");
         colorNameDB.insertNewColorData("7CA1A6","Gumbo","{\"rgb\" : [124, 161, 166]}");
+        colorNameDB.insertNewColorData("2C3539","Gun Metal","{\"rgb\" : [44, 53, 57]}");
         colorNameDB.insertNewColorData("414257","Gun Powder","{\"rgb\" : [65, 66, 87]}");
         colorNameDB.insertNewColorData("828685","Gunsmoke","{\"rgb\" : [130, 134, 133]}");
         colorNameDB.insertNewColorData("9A9577","Gurkha","{\"rgb\" : [154, 149, 119]}");
@@ -1373,6 +1374,7 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("F3D69D","New Orleans","{\"rgb\" : [243, 214, 157]}");
         colorNameDB.insertNewColorData("D7837F","New York Pink","{\"rgb\" : [215, 131, 127]}");
         colorNameDB.insertNewColorData("06A189","Niagara","{\"rgb\" : [6, 161, 137]}");
+        colorNameDB.insertNewColorData("0C090A","Night","{\"rgb\" : [12, 9, 10]}");
         colorNameDB.insertNewColorData("1F120F","Night Rider","{\"rgb\" : [31, 18, 15]}");
         colorNameDB.insertNewColorData("AA375A","Night Shadz","{\"rgb\" : [170, 55, 90]}");
         colorNameDB.insertNewColorData("193751","Nile Blue","{\"rgb\" : [25, 55, 81]}");
