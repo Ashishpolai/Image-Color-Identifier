@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private static TextView textView, txtColorName;
     private static ClipboardManager clipboard;
 
-    private SharedPreferences permissionStatus, firstTime, firstTimeDb;
+    private SharedPreferences permissionStatus, firstTime, firstTimeDb, firstTimeDbNewColors;
     private static final int EXTERNAL_STORAGE_PERMISSION_CONSTANT = 2200;
     private static final int REQUEST_PERMISSION_SETTING = 2031;
     private static final int CAMERA_REQUEST_CODE = 041;
@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         permissionStatus = getSharedPreferences("imagecoloridentifier",MODE_PRIVATE);
         firstTime = getSharedPreferences("imagecoloridentifierfirstftisme",MODE_PRIVATE);
         firstTimeDb = getSharedPreferences("imagecoloridentifierfirstftismeDB",MODE_PRIVATE);
+        firstTimeDbNewColors = getSharedPreferences("imagecoloridentifierfirstftismeDBnewcolros",MODE_PRIVATE);
 
         btnChngeImg = (Button) findViewById(R.id.btn_changeimg);
         btnChngeImg.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
         //Call this only for the first time
         colorNameDB = new ColorDBAdpater(this);
         colorNameDB = colorNameDB.open();
+
+        //Firsttime New Colors update
+        if(firstTime.getAll().size()!=0 && firstTimeDb.getAll().size()!=0 && firstTimeDbNewColors.getAll().size() == 0){
+            new InsertDBData().execute();
+        }
 
         //Firsttime RGB update
         if(firstTime.getAll().size()!=0 && firstTimeDb.getAll().size()==0){
@@ -404,6 +410,10 @@ public class MainActivity extends AppCompatActivity {
             if(firstTime.getAll().size()!=0 && firstTimeDb.getAll().size()==0){
                 colorNameDB.deleteAllColorData();
             }
+
+            if(firstTime.getAll().size()!=0 && firstTimeDb.getAll().size()!=0 && firstTimeDbNewColors.getAll().size()==0){
+                colorNameDB.deleteAllColorData();
+            }
             initColorNameHashMap();
             return null;
         }
@@ -417,6 +427,10 @@ public class MainActivity extends AppCompatActivity {
 
             SharedPreferences.Editor editorDB = firstTimeDb.edit();
             editorDB.putBoolean("isInserted", true);
+            editorDB.commit();
+
+            SharedPreferences.Editor editorDBNewCol = firstTimeDbNewColors.edit();
+            editorDB.putBoolean("isInsertedNewColors", true);
             editorDB.commit();
             if(btnAllColors!=null)
                 btnAllColors.setVisibility(View.VISIBLE);
