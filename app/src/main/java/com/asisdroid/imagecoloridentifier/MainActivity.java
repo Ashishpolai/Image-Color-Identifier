@@ -711,6 +711,7 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("FAECCC","Champagne","{\"rgb\" : [250, 236, 204]}");
         colorNameDB.insertNewColorData("F8C3DF","Chantilly","{\"rgb\" : [248, 195, 223]}");
         colorNameDB.insertNewColorData("292937","Charade","{\"rgb\" : [41, 41, 55]}");
+        colorNameDB.insertNewColorData("34282C","Charcoal","{\"rgb\" : [52, 40, 44]}");
         colorNameDB.insertNewColorData("FFF3F1","Chardon","{\"rgb\" : [255, 243, 241]}");
         colorNameDB.insertNewColorData("FFCD8C","Chardonnay","{\"rgb\" : [255, 205, 140]}");
         colorNameDB.insertNewColorData("BAEEF9","Charlotte","{\"rgb\" : [186, 238, 249]}");
@@ -1999,7 +2000,45 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("A59B91","Zorba","{\"rgb\" : [165, 155, 145]}");
         colorNameDB.insertNewColorData("044022","Zuccini","{\"rgb\" : [4, 64, 34]}");
         colorNameDB.insertNewColorData("EDF6FF","Zumthor","{\"rgb\" : [237, 246, 255]}");
-
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("413839","Black Cat","{\"rgb\" : [65, 56, 57 ]}");
+        colorNameDB.insertNewColorData("3D3C3A","Iridium","{\"rgb\" : [70, 62, 63]}");
+        colorNameDB.insertNewColorData("463E3F","Black Eel","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("4C4646","Black Cow","{\"rgb\" : [76, 70, 70]}");
+        colorNameDB.insertNewColorData("504A4B","Gray Wolf","{\"rgb\" : [80, 74, 75]}");
+        colorNameDB.insertNewColorData("565051","Vampire Gray","{\"rgb\" : [86, 80, 81]}");
+        colorNameDB.insertNewColorData("5C5858","Gray Dolphin","{\"rgb\" : [92, 88, 88]}");
+        colorNameDB.insertNewColorData("625D5D","Carbon Gray","{\"rgb\" : [98, 93, 93]}");
+        colorNameDB.insertNewColorData("666362","Ash Gray","{\"rgb\" : [102, 99, 98]}");
+        colorNameDB.insertNewColorData("6D6968","Cloudy Gray","{\"rgb\" : [109, 105, 104]}");
+        colorNameDB.insertNewColorData("726E6D","Smokey Gray","{\"rgb\" : [114, 110, 109]}");
+        colorNameDB.insertNewColorData("837E7C","Granite","{\"rgb\" : [131, 126, 124]}");
+        colorNameDB.insertNewColorData("B6B6B4","Gray Cloud","{\"rgb\" : [182, 182, 180]}");
+        colorNameDB.insertNewColorData("D1D0CE","Gray Goose","{\"rgb\" : [209, 208, 206]}");
+        colorNameDB.insertNewColorData("E5E4E2","Platinum","{\"rgb\" : [229, 228, 226]}");
+        colorNameDB.insertNewColorData("BCC6CC","Metallic Silver","{\"rgb\" : [188, 198, 204]}");
+        colorNameDB.insertNewColorData("98AFC7","Blue Gray","{\"rgb\" : [152, 175, 199]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
     }
 
     //FIRST TIME SHOWCASE VIEW TIPS
