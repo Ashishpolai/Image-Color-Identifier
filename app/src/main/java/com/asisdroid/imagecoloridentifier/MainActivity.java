@@ -443,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void initColorNameHashMap(){
-        //Log.d("asisi","insertstart");
+        Log.d("asisi","insertstart");
         colorNameDB.insertNewColorData("4C4F56","Abbey","{\"rgb\" : [76,79,86]}");
         colorNameDB.insertNewColorData("1B1404","Acadia","{\"rgb\" : [27,20,4]}");
         colorNameDB.insertNewColorData("7CB0A1","Acapulco","{\"rgb\" : [124, 176, 161]}");
@@ -2053,6 +2053,7 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
         colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
         colorNameDB.insertNewColorData("25383C","Dark Slate Grey","{\"rgb\" : [37, 56, 60]}");
+        Log.d("asisi","insertend");
     }
 
     //FIRST TIME SHOWCASE VIEW TIPS
@@ -2129,9 +2130,16 @@ public class MainActivity extends AppCompatActivity {
         String approxColourName = "Unnamed Colour";
 
         for(int i = 0; i < allColorNameList.size(); i++){
-            //If color code exists in my colour list
-            if(colorCode.equalsIgnoreCase("#" + allColorCodeList.get(i)))
-                return allColorNameList.get(i);
+
+            try {
+                //If color code exists in my colour list
+                if (colorCode.equalsIgnoreCase("#" + allColorCodeList.get(i)))
+                    return allColorNameList.get(i);
+            }
+            catch (IndexOutOfBoundsException e){
+                e.printStackTrace();
+                return "Unnamed Colour";
+            }
 
             try {
                 final JSONObject obj = new JSONObject(allColourRgbList.get(i));
