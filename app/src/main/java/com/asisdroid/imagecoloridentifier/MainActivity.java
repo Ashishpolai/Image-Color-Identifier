@@ -430,8 +430,8 @@ public class MainActivity extends AppCompatActivity {
             editorDB.commit();
 
             SharedPreferences.Editor editorDBNewCol = firstTimeDbNewColors.edit();
-            editorDB.putBoolean("isInsertedNewColors", true);
-            editorDB.commit();
+            editorDBNewCol.putBoolean("isInsertedNewColors", true);
+            editorDBNewCol.commit();
             if(btnAllColors!=null)
                 btnAllColors.setVisibility(View.VISIBLE);
 
