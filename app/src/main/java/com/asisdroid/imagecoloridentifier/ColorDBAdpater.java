@@ -45,6 +45,7 @@ public class ColorDBAdpater extends SQLiteOpenHelper {
 
     public ColorDBAdpater open() throws SQLException {
         db = this.getWritableDatabase();
+        db = SQLiteDatabase.openDatabase(db.getPath(), null, SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READWRITE);
         return this;
     }
 
