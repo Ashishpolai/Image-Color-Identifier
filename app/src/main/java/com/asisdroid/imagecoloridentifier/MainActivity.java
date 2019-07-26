@@ -2162,7 +2162,7 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("CC6600","Sedona","{\"rgb\" : [204, 102, 0]}");
         colorNameDB.insertNewColorData("E56717","Papaya Orange","{\"rgb\" : [229, 103, 23]}");
         colorNameDB.insertNewColorData("E66C2C","Halloween Orange","{\"rgb\" : [230, 108, 44]}");
-        colorNameDB.insertNewColorData("F87217","Pumpkin Orange","{\"rgb\" : []}");
+        colorNameDB.insertNewColorData("F87217","Pumpkin Orange","{\"rgb\" : [248, 114, 23]}");
         colorNameDB.insertNewColorData("F87431","Construction Cone Orange","{\"rgb\" : [248, 116, 49]}");
         colorNameDB.insertNewColorData("E67451","Sunrise Orange","{\"rgb\" : [230, 116, 81]}");
         colorNameDB.insertNewColorData("FF8040","Mango Orange","{\"rgb\" : [255, 128, 64]}");
