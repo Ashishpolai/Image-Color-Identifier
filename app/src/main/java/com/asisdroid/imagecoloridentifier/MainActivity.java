@@ -2172,68 +2172,76 @@ public class MainActivity extends AppCompatActivity {
         colorNameDB.insertNewColorData("E18B6B","Dark Salmon","{\"rgb\" : [225, 139, 107]}");
         colorNameDB.insertNewColorData("E77471","Light Cora;","{\"rgb\" : [231, 116, 113]}");
         colorNameDB.insertNewColorData("F75D59","Bean Red","{\"rgb\" : [247, 93, 89]}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
-        colorNameDB.insertNewColorData("25383C","","{\"rgb\" : []}");
+        colorNameDB.insertNewColorData("E55451","Valentine Red","{\"rgb\" : [229, 84, 81]}");
+        colorNameDB.insertNewColorData("E55B3C","Shocking Orange","{\"rgb\" : [229, 91, 60]}");
+        colorNameDB.insertNewColorData("F62217","Ruby Red","{\"rgb\" : [246, 34, 23]}");
+        colorNameDB.insertNewColorData("F70D1A","Ferrari Red","{\"rgb\" : [247, 13, 26]}");
+        colorNameDB.insertNewColorData("F62817","Fire Engine Red","{\"rgb\" : [246, 40, 23]}");
+        colorNameDB.insertNewColorData("E42217","Lava Red","{\"rgb\" : [228, 34, 23]}");
+        colorNameDB.insertNewColorData("E41B17","Love Red","{\"rgb\" : [228, 27, 23]}");
+        colorNameDB.insertNewColorData("DC381F","Graperuit","{\"rgb\" : [220, 56, 31]}");
+        colorNameDB.insertNewColorData("C34A2C","Chestnut Red","{\"rgb\" : [195, 74, 44]}");
+        colorNameDB.insertNewColorData("C24641","Cherry Red","{\"rgb\" : [194, 70, 65]}");
+        colorNameDB.insertNewColorData("C11B17","Chilli Pepper","{\"rgb\" : [193, 27, 23]}");
+        colorNameDB.insertNewColorData("990012","Red Wine","{\"rgb\" : [153, 0, 18]}");
+        colorNameDB.insertNewColorData("7E3517","Blood Red","{\"rgb\" : [126, 53, 23]}");
+        colorNameDB.insertNewColorData("800517","Firebrick","{\"rgb\" : [128, 5, 23]}");
+        colorNameDB.insertNewColorData("7D0541","Plum Pie","{\"rgb\" : [125, 5, 65]}");
+        colorNameDB.insertNewColorData("7E354D","Velevet Maroon","{\"rgb\" : [126, 53, 77]}");
+        colorNameDB.insertNewColorData("7D0552","Plum Velvet","{\"rgb\" : [125, 5, 82]}");
+        colorNameDB.insertNewColorData("7F4E52","Rosy Finch","{\"rgb\" : [127, 78, 82]}");
+        colorNameDB.insertNewColorData("7F525D","Dull Purple","{\"rgb\" : [127, 82, 93]}");
+        colorNameDB.insertNewColorData("B38481","Rosy Brown","{\"rgb\" : [179, 132, 129]}");
+        colorNameDB.insertNewColorData("C5908E","Khaki Rose","{\"rgb\" : [197, 144, 142]}");
+        colorNameDB.insertNewColorData("C48189","Pink Bow","{\"rgb\" : [196, 129, 137]}");
+        colorNameDB.insertNewColorData("C48793","Lipstick Pink","{\"rgb\" : [196, 135, 147]}");
+        colorNameDB.insertNewColorData("ECC5C0","Rose Gold","{\"rgb\" : [236, 197, 192]}");
+        colorNameDB.insertNewColorData("FFDFDD","Pink Bubble Gum","{\"rgb\" : [255, 223, 221]}");
+        colorNameDB.insertNewColorData("FBBBB9","Misty Rose","{\"rgb\" : [251, 187, 185]}");
+        colorNameDB.insertNewColorData("FAAFBA","Light PInk","{\"rgb\" : [250, 175, 186]}");
+        colorNameDB.insertNewColorData("F9A7B0","Flamingo Pink","{\"rgb\" : [249, 167, 176]}");
+        colorNameDB.insertNewColorData("E7A1B0","Pink Rose","{\"rgb\" : [231, 161, 176]}");
+        colorNameDB.insertNewColorData("E799A3","Pink Daisy","{\"rgb\" : [231, 153, 163]}");
+        colorNameDB.insertNewColorData("E38AAE","Cadillac Pink","{\"rgb\" : [227, 138, 174]}");
+        colorNameDB.insertNewColorData("E56E94","Blush Red","{\"rgb\" : [229, 110, 148]}");
+        colorNameDB.insertNewColorData("FC6C85","Watermelon Pink","{\"rgb\" : [252, 108, 133]}");
+        colorNameDB.insertNewColorData("F52887","Deep Pink","{\"rgb\" : [245, 40, 135]}");
+        colorNameDB.insertNewColorData("E45E9D","Pink Cupcake","{\"rgb\" : [228, 94, 157]}");
+        colorNameDB.insertNewColorData("E4287C","Pink Lemonade","{\"rgb\" : [228, 40, 124]}");
+        colorNameDB.insertNewColorData("F535AA","Neon Pink","{\"rgb\" : [245, 53, 170]}");
+        colorNameDB.insertNewColorData("E3319D","Dimorphotheca Magenta","{\"rgb\" : [227, 49, 157]}");
+        colorNameDB.insertNewColorData("F433FF","Bright Neon Pink","{\"rgb\" : [244, 51, 255]}");
+        colorNameDB.insertNewColorData("D16587","Pale Violet Red","{\"rgb\" : [209, 101, 135]}");
+        colorNameDB.insertNewColorData("C25A7C","Tulip Pink","{\"rgb\" : [194, 90, 124]}");
+        colorNameDB.insertNewColorData("CA226B","Medium Violet Red","{\"rgb\" : [202, 34, 107]}");
+        colorNameDB.insertNewColorData("C12869","Rogue Pink","{\"rgb\" : [193, 40, 105]}");
+        colorNameDB.insertNewColorData("C12267","Burnt Pink","{\"rgb\" : [193, 34, 103]}");
+        colorNameDB.insertNewColorData("C25283","Bashful Pink","{\"rgb\" : [194, 82, 131]}");
+        colorNameDB.insertNewColorData("C12283","Dark Carnation Pink","{\"rgb\" : [193, 34, 131]}");
+        colorNameDB.insertNewColorData("7E587E","Viola Purple","{\"rgb\" : [126, 88, 126]}");
+        colorNameDB.insertNewColorData("571B7E","Purple Iris","{\"rgb\" : [87, 27, 126]}");
+        colorNameDB.insertNewColorData("583759","Plum Purple","{\"rgb\" : [88, 55, 89]}");
+        colorNameDB.insertNewColorData("461B7E","Purple Monster","{\"rgb\" : [70, 27, 126]}");
+        colorNameDB.insertNewColorData("4E387E","Purple Haze","{\"rgb\" : [78, 56, 126]}");
+        colorNameDB.insertNewColorData("6A287E","Purple Jam","{\"rgb\" : [106, 40, 126]}");
+        colorNameDB.insertNewColorData("7D1B7E","Dark Orchid","{\"rgb\" : [125, 27, 126]}");
+        colorNameDB.insertNewColorData("A74AC7","Purple Flower","{\"rgb\" : [167, 74, 199]}");
+        colorNameDB.insertNewColorData("B048B5","Medium Orrchid","{\"rgb\" : [176, 72, 181]}");
+        colorNameDB.insertNewColorData("6C2DC7","Purple Amethyst","{\"rgb\" : [108, 45, 199]}");
+        colorNameDB.insertNewColorData("842DCE","Dark Violet","{\"rgb\" : [132, 45, 206]}");
+        colorNameDB.insertNewColorData("7A5DC7","Purple Saga Bush","{\"rgb\" : [122, 93, 199]}");
+        colorNameDB.insertNewColorData("7F38EC","Lovely Purple","{\"rgb\" : [127, 56, 236]}");
+        colorNameDB.insertNewColorData("893BFF","Aztech Purple","{\"rgb\" : [137, 59, 255]}");
+        colorNameDB.insertNewColorData("A23BEC","Jasmine Purple","{\"rgb\" : [162, 59, 236]}");
+        colorNameDB.insertNewColorData("B041FF","Purple Daffodil","{\"rgb\" : [176, 65, 255]}");
+        colorNameDB.insertNewColorData("9172EC","Crocus Purple","{\"rgb\" : [145, 114, 236]}");
+        colorNameDB.insertNewColorData("9E7BFF","Purple Mimosa","{\"rgb\" : [158, 123, 255]}");
+        colorNameDB.insertNewColorData("D462FF","Heliotrope Purple","{\"rgb\" : [212, 98, 255]}");
+        colorNameDB.insertNewColorData("C38EC7","Purple Dragon","{\"rgb\" : [195, 142, 199]}");
+        colorNameDB.insertNewColorData("F9B7FF","Blossom Pink","{\"rgb\" : [249, 183, 255]}");
+        colorNameDB.insertNewColorData("EBDDE2","Lavender Pinocchio","{\"rgb\" : [235, 221, 226]}");
+        colorNameDB.insertNewColorData("FEFCFF","Milk White","{\"rgb\" : [254, 252, 255]}");
+
         Log.d("asisi","insertend");
     }
 
@@ -2274,8 +2282,8 @@ public class MainActivity extends AppCompatActivity {
         sequence.addSequenceItem(
                 new MaterialShowcaseView.Builder(this)
                         .setTarget(findViewById(R.id.btn_allcolors))
-                        .setTitleText("EXPLORE 1600 COLORS")
-                        .setContentText("Click and explore among more than 1600 different colors with their names and color codes.")
+                        .setTitleText("EXPLORE 1800 COLORS")
+                        .setContentText("Click and explore among more than 1800 different colors with their names and color codes.")
                         .withCircleShape()
                         .setDismissOnTargetTouch(true)
                         .setDismissOnTouch(true)
