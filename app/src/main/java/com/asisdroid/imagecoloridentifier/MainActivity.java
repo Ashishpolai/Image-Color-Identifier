@@ -41,16 +41,10 @@ import android.widget.Toast;
 import com.asisdroid.colorpickerview.ColorListener;
 import com.asisdroid.colorpickerview.MultiColorPickerView;*/
 
-//import com.google.android.gms.ads.AdListener;
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.InterstitialAd;
-//import com.google.android.gms.ads.MobileAds;
-
-
-import com.inmobi.ads.InMobiAdRequestStatus;
-import com.inmobi.ads.InMobiInterstitial;
-import com.inmobi.ads.listeners.InterstitialAdEventListener;
-import com.inmobi.sdk.InMobiSdk;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.skydoves.multicolorpicker.ColorEnvelope;
 import com.skydoves.multicolorpicker.MultiColorPickerView;
 import com.skydoves.multicolorpicker.listeners.ColorListener;
@@ -92,17 +86,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 041;
     private static final int GALLERY_REQUEST_CODE = 032;
     private static final String SHOWCASE_ID = "first time opendfdasdsdfjsdkjfksdj";
-
-    //private InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd;
 
     public ColorDBAdpater colorNameDB;
     LinearLayout linearLayout;
 
     private String selectedColorCode = "";
     private int selected_rgb[] = new int[3];
-    JSONObject consentObject = new JSONObject();
 
-    public static InMobiInterstitial interstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,25 +101,13 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_multi_color_picker_view_example);
 
-//        MobileAds.initialize(this, getResources().getString(R.string.admobappID));
-//        mInterstitialAd = new InterstitialAd(this);
-//        mInterstitialAd.setAdUnitId(getResources().getString(R.string.admobInterstetialunitID));
-//
-//        if(checkInternetConenction()) {
-//            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-//        }
+        MobileAds.initialize(this, getResources().getString(R.string.admobappID));
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.admobInterstetialunitID));
 
-        try {
-            // Provide correct consent value to sdk which is obtained by User
-            consentObject.put(InMobiSdk.IM_GDPR_CONSENT_AVAILABLE, true);
-            // Provide 0 if GDPR is not applicable and 1 if applicable
-            consentObject.put("gdpr", "0");
-            // Provide user consent in IAB format
-            //consentObject.put(InMobiSdk.IM_GDPR_CONSENT_IAB, “<<consent in IAB format>>”);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(checkInternetConenction()) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
         }
-        InMobiSdk.init(this, getResources().getString(R.string.inmobi_account_id), consentObject);
 
         clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         textView = findViewById(R.id.textView0);
@@ -154,72 +133,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checkInternetConenction()){
-                    interstitialAd = new InMobiInterstitial(MainActivity.this, Long.parseLong(getResources().getString(R.string.inmobi_interstitial_placementid)),
-                            new InterstitialAdEventListener() {
-                                @Override
-                                public void onAdLoadSucceeded(InMobiInterstitial inMobiInterstitial) {
-                                    super.onAdLoadSucceeded(inMobiInterstitial);
-                                    interstitialAd.show();
-                                    Log.d("InMobi Interstitial Ad", "create_hotspot : onAdLoadSucceeded");
-                                }
+                    if(mInterstitialAd.isLoaded()){
+                        mInterstitialAd.show();
+                        mInterstitialAd.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+                                // Code to be executed when an ad finishes loading.
 
-                                @Override
-                                public void onAdLoadFailed(InMobiInterstitial inMobiInterstitial, InMobiAdRequestStatus inMobiAdRequestStatus) {
-                                    super.onAdLoadFailed(inMobiInterstitial, inMobiAdRequestStatus);
-                                    askPermissions();
-                                    Log.d("InMobi Interstitial Ad", "create_hotspot : onAdLoadFailed - "+inMobiAdRequestStatus.getMessage());
-                                }
+                            }
 
-                                @Override
-                                public void onAdDisplayed(InMobiInterstitial inMobiInterstitial) {
-                                    super.onAdDisplayed(inMobiInterstitial);
-                                    Log.d("InMobi Interstitial Ad", "create_hotspot : onAdDisplayed");
-                                }
+                            @Override
+                            public void onAdFailedToLoad(int errorCode) {
+                                // Code to be executed when an ad request fails.
+                            }
 
-                                @Override
-                                public void onAdDismissed(InMobiInterstitial inMobiInterstitial) {
-                                    super.onAdDismissed(inMobiInterstitial);
-                                    askPermissions();
-                                    Log.d("InMobi Interstitial Ad", "create_hotspot : onAdDismissed");
-                                }
-                            });
-                    interstitialAd.load();
+                            @Override
+                            public void onAdOpened() {
+                                // Code to be executed when the ad is displayed.
+                            }
 
-//                    if(mInterstitialAd.isLoaded()){
-//                        mInterstitialAd.show();
-//                        mInterstitialAd.setAdListener(new AdListener() {
-//                            @Override
-//                            public void onAdLoaded() {
-//                                // Code to be executed when an ad finishes loading.
-//
-//                            }
-//
-//                            @Override
-//                            public void onAdFailedToLoad(int errorCode) {
-//                                // Code to be executed when an ad request fails.
-//                            }
-//
-//                            @Override
-//                            public void onAdOpened() {
-//                                // Code to be executed when the ad is displayed.
-//                            }
-//
-//                            @Override
-//                            public void onAdLeftApplication() {
-//                                // Code to be executed when the user has left the app.
-//                            }
-//
-//                            @Override
-//                            public void onAdClosed() {
-//                                // Code to be executed when when the interstitial ad is closed.
-//                                askPermissions();
-//                                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-//                            }
-//                        });
-//                    }
-//                    else{
-//                        askPermissions();
-//                    }
+                            @Override
+                            public void onAdLeftApplication() {
+                                // Code to be executed when the user has left the app.
+                            }
+
+                            @Override
+                            public void onAdClosed() {
+                                // Code to be executed when when the interstitial ad is closed.
+                                askPermissions();
+                                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                            }
+                        });
+                    }
+                    else{
+                        askPermissions();
+                    }
                 }
                 else {
                     askPermissions();
