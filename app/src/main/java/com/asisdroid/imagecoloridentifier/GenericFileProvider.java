@@ -1,6 +1,6 @@
 package com.asisdroid.imagecoloridentifier;
 
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 /**
  * Created by ashishkumarpolai on 3/5/2018.

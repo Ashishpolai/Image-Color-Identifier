@@ -23,12 +23,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import 	androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -339,21 +339,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        switch(requestCode) {
+        switch (requestCode) {
             case CAMERA_REQUEST_CODE:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = uriSavedImage;
                     setImageFromPath(selectedImage);
                 }
 
                 break;
             case GALLERY_REQUEST_CODE:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = imageReturnedIntent.getData();
                     setImageFromPath(selectedImage);
                 }
                 break;
         }
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
     }
 
     private void setImageFromPath(Uri img) {

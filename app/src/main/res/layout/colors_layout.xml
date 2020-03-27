@@ -6,7 +6,7 @@
     android:background="@color/bgcolor"
     android:elevation="5dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/color_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,5 +61,5 @@
         android:fontFamily="serif-monospace"
         />
     </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

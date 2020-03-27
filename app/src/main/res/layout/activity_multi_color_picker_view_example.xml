@@ -6,6 +6,19 @@
     android:background="@color/background"
     >
 
+    <!--GAMEZOP ADS LAYOUT-->
+    <fragment
+        android:id="@+id/fragment_adzop_ad"
+        android:name="com.asisdroid.imagecoloridentifier.FragmentGamezopAdICD"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
     <ImageView
         android:id="@+id/btn_allcolors"
         android:layout_width="wrap_content"
