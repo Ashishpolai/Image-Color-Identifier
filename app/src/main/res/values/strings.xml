@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Image color identifier</string>
-    <string name="admobInterstetialunitID">ca-app-pub-9230915632021221/3953834831</string> <!--ACTUAL INTERSTETIAL ADMOB UNIT-->
-    <string name="admobunitID">ca-app-pub-9230915632021221/3224875391</string>  <!--ACTUAL ADMOB UNIT-->
+    <string name="admobInterstetialunitID">ca-app-pub-9303979310929578/4870068905</string> <!--ACTUAL INTERSTETIAL ADMOB UNIT-->
+    <string name="admobunitID">ca-app-pub-9303979310929578/2656088666</string>  <!--ACTUAL ADMOB UNIT-->
 <!--    <string name="admobInterstetialunitID">ca-app-pub-3940256099942544/1033173712</string> &lt;!&ndash;DUMMY INTERSTETIAL ADMOB UNIT&ndash;&gt;-->
 <!--    <string name="admobunitID">ca-app-pub-3940256099942544/6300978111</string>  &lt;!&ndash; DUMMY ADMOB UNIT&ndash;&gt;-->
-    <string name="admobappID">ca-app-pub-9230915632021221~5552829292</string>
+    <string name="admobappID">ca-app-pub-9303979310929578~5282252007</string>
     <string name="rgbstring">RGB:\n(0, 0, 0)</string>
 </resources>
