@@ -38,7 +38,7 @@ public class FragmentGamezopAdICD extends Fragment {
 	}
 
 	private void openPortal() {
-		String url = "https://v2.gamezop.com/";
+		String url = "https://www.gamezop.com/?id=9ntlx2Ol5";
 		CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
 		builder.setToolbarColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
 		CustomTabsIntent customTabsIntent = builder.build();
