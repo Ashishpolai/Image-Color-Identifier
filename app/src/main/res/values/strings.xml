@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Image color identifier</string>
+
+    <string name="facebook_app_id">838254213374146</string>
+    <string name="fb_login_protocol_scheme">fb838254213374146</string>
+    <string name="fb_banner_placementid">838254213374146_838259820040252</string>
+    <string name="fb_interstitial_placementid">838254213374146_838264063373161</string>
+
     <string name="admobInterstetialunitID">ca-app-pub-1584503294314133/8088167680</string> <!--ACTUAL INTERSTETIAL ADMOB UNIT-->
     <string name="admobunitID">ca-app-pub-1584503294314133/1439052758</string>  <!--ACTUAL ADMOB UNIT-->
 <!--    <string name="admobInterstetialunitID">ca-app-pub-3940256099942544/1033173712</string> &lt;!&ndash;DUMMY INTERSTETIAL ADMOB UNIT&ndash;&gt;-->

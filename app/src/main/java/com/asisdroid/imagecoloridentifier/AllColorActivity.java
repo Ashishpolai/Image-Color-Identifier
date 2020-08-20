@@ -33,10 +33,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.skydoves.multicolorpicker.ColorEnvelope;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,12 +44,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
-
 public class AllColorActivity extends Activity {
 
+    private static final String TAG = "AllCOlorActivity";
     GridView colorGridView;
     private AllColorViewAdapter allColorViewAdapter;
 
@@ -59,7 +56,7 @@ public class AllColorActivity extends Activity {
 
     private ClipboardManager clipboard;
 
-    private InterstitialAd mInterstitialAd;
+    public static InterstitialAd mInterstitialAd;
 
     private ImageView btnBack;
 
@@ -75,12 +72,7 @@ public class AllColorActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_all_color);
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.admobInterstetialunitID));
-
-        if(checkInternetConenction()) {
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        }
+        mInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_interstitial_placementid));
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading colors...");
@@ -243,44 +235,51 @@ public class AllColorActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(checkInternetConenction()){
-            if(mInterstitialAd.isLoaded()){
-                mInterstitialAd.show();
-                mInterstitialAd.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdLoaded() {
-                        // Code to be executed when an ad finishes loading.
+            mInterstitialAd.setAdListener(new InterstitialAdListener() {
+                @Override
+                public void onInterstitialDisplayed(Ad ad) {
+                    Log.e(TAG, "Interstitial ad displayed.");
+                    mInterstitialAd.loadAd();
+                }
 
-                    }
+                @Override
+                public void onInterstitialDismissed(Ad ad) {
+                    Log.e(TAG, "Interstitial ad dismissed.");
+                    finish();
+                }
 
-                    @Override
-                    public void onAdFailedToLoad(int errorCode) {
-                        // Code to be executed when an ad request fails.
-                    }
+                @Override
+                public void onError(Ad ad, AdError adError) {
+                    Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
+                    finish();
+                }
 
-                    @Override
-                    public void onAdOpened() {
-                        // Code to be executed when the ad is displayed.
-                    }
+                @Override
+                public void onAdLoaded(Ad ad) {
+                    Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
+                    // Show the ad
+                    mInterstitialAd.show();
+                }
 
-                    @Override
-                    public void onAdLeftApplication() {
-                        // Code to be executed when the user has left the app.
-                    }
+                @Override
+                public void onAdClicked(Ad ad) {
+                    Log.d(TAG, "Interstitial ad clicked!");
+                }
 
-                    @Override
-                    public void onAdClosed() {
-                        // Code to be executed when when the interstitial ad is closed.
-                        finish();
-                    }
-                });
-            }
-            else{
-                super.onBackPressed();
-            }
+                @Override
+                public void onLoggingImpression(Ad ad) {
+                    Log.d(TAG, "Interstitial ad impression logged!");
+                }
+            });
+            mInterstitialAd.loadAd();
         }
         else {
             super.onBackPressed();
         }
+
+    }
+
+    public void onPressingBack(){
 
     }
 

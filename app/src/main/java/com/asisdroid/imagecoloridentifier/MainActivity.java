@@ -41,10 +41,10 @@ import android.widget.Toast;
 import com.asisdroid.colorpickerview.ColorListener;
 import com.asisdroid.colorpickerview.MultiColorPickerView;*/
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.skydoves.multicolorpicker.ColorEnvelope;
 import com.skydoves.multicolorpicker.MultiColorPickerView;
 import com.skydoves.multicolorpicker.listeners.ColorListener;
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     public Button btnChngeImg;
     ImageView btnAllColors;
 
+    private final static String TAG = "MainActivity";
+
     Uri uriSavedImage;
 
     private int width, height;
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 041;
     private static final int GALLERY_REQUEST_CODE = 032;
     private static final String SHOWCASE_ID = "first time opendfdasdsdfjsdkjfksdj";
-    private InterstitialAd mInterstitialAd;
+    public static InterstitialAd mInterstitialAd;
 
     public ColorDBAdpater colorNameDB;
     LinearLayout linearLayout;
@@ -101,13 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_multi_color_picker_view_example);
 
-        MobileAds.initialize(this, getResources().getString(R.string.admobappID));
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.admobInterstetialunitID));
-
-        if(checkInternetConenction()) {
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        }
+        mInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_interstitial_placementid));
 
         clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         textView = findViewById(R.id.textView0);
@@ -133,41 +129,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checkInternetConenction()){
-                    if(mInterstitialAd.isLoaded()){
-                        mInterstitialAd.show();
-                        mInterstitialAd.setAdListener(new AdListener() {
-                            @Override
-                            public void onAdLoaded() {
-                                // Code to be executed when an ad finishes loading.
+                    mInterstitialAd.setAdListener(new InterstitialAdListener() {
+                        @Override
+                        public void onInterstitialDisplayed(Ad ad) {
+                            Log.e(TAG, "Interstitial ad displayed.");
+                            mInterstitialAd.loadAd();
+                        }
 
-                            }
+                        @Override
+                        public void onInterstitialDismissed(Ad ad) {
+                            Log.e(TAG, "Interstitial ad dismissed.");
+                            askPermissions();
+                        }
 
-                            @Override
-                            public void onAdFailedToLoad(int errorCode) {
-                                // Code to be executed when an ad request fails.
-                            }
+                        @Override
+                        public void onError(Ad ad, AdError adError) {
+                            Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
+                            askPermissions();
+                        }
 
-                            @Override
-                            public void onAdOpened() {
-                                // Code to be executed when the ad is displayed.
-                            }
+                        @Override
+                        public void onAdLoaded(Ad ad) {
+                            Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
+                            // Show the ad
+                            mInterstitialAd.show();
+                        }
 
-                            @Override
-                            public void onAdLeftApplication() {
-                                // Code to be executed when the user has left the app.
-                            }
+                        @Override
+                        public void onAdClicked(Ad ad) {
+                            Log.d(TAG, "Interstitial ad clicked!");
+                        }
 
-                            @Override
-                            public void onAdClosed() {
-                                // Code to be executed when when the interstitial ad is closed.
-                                askPermissions();
-                                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                            }
-                        });
-                    }
-                    else{
-                        askPermissions();
-                    }
+                        @Override
+                        public void onLoggingImpression(Ad ad) {
+                            Log.d(TAG, "Interstitial ad impression logged!");
+                        }
+                    });
+                    mInterstitialAd.loadAd();
                 }
                 else {
                     askPermissions();
