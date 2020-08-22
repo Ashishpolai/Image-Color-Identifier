@@ -58,12 +58,14 @@ public class AllColorActivity extends Activity {
 
     public static InterstitialAd mInterstitialAd;
 
+
     private ImageView btnBack;
 
     private EditText edtSearch;
 
     private TextView txtError;
     ProgressDialog dialog;
+    public ProgressDialog progressForAds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,13 @@ public class AllColorActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_all_color);
 
+        progressForAds = new ProgressDialog(this);
+        progressForAds.setMessage("Loading Ad..");
+        progressForAds.setCanceledOnTouchOutside(false);
+        progressForAds.setCancelable(false);
+
         mInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_interstitial_placementid));
+        mInterstitialAd.loadAd();
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading colors...");
@@ -235,48 +243,88 @@ public class AllColorActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(checkInternetConenction()){
-            mInterstitialAd.setAdListener(new InterstitialAdListener() {
-                @Override
-                public void onInterstitialDisplayed(Ad ad) {
-                    Log.e(TAG, "Interstitial ad displayed.");
-                    mInterstitialAd.loadAd();
-                }
+            if(mInterstitialAd.isAdLoaded()){
+                mInterstitialAd.show();
+                mInterstitialAd.setAdListener(new InterstitialAdListener() {
+                    @Override
+                    public void onInterstitialDisplayed(Ad ad) {
 
-                @Override
-                public void onInterstitialDismissed(Ad ad) {
-                    Log.e(TAG, "Interstitial ad dismissed.");
-                    finish();
-                }
+                    }
 
-                @Override
-                public void onError(Ad ad, AdError adError) {
-                    Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
-                    finish();
-                }
+                    @Override
+                    public void onInterstitialDismissed(Ad ad) {
+                        finish();
+                    }
 
-                @Override
-                public void onAdLoaded(Ad ad) {
-                    Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
-                    // Show the ad
-                    mInterstitialAd.show();
-                }
+                    @Override
+                    public void onError(Ad ad, AdError adError) {
+                        finish();
+                    }
 
-                @Override
-                public void onAdClicked(Ad ad) {
-                    Log.d(TAG, "Interstitial ad clicked!");
-                }
+                    @Override
+                    public void onAdLoaded(Ad ad) {
 
-                @Override
-                public void onLoggingImpression(Ad ad) {
-                    Log.d(TAG, "Interstitial ad impression logged!");
+                    }
+
+                    @Override
+                    public void onAdClicked(Ad ad) {
+
+                    }
+
+                    @Override
+                    public void onLoggingImpression(Ad ad) {
+
+                    }
+                });
+            }
+            else{
+                if(!progressForAds.isShowing()) {
+                    progressForAds.show();
                 }
-            });
-            mInterstitialAd.loadAd();
+                mInterstitialAd.setAdListener(new InterstitialAdListener() {
+                    @Override
+                    public void onInterstitialDisplayed(Ad ad) {
+                    }
+
+                    @Override
+                    public void onInterstitialDismissed(Ad ad) {
+                        hideProgressbar();
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(Ad ad, AdError adError) {
+                        hideProgressbar();
+                        finish();
+                    }
+
+                    @Override
+                    public void onAdLoaded(Ad ad) {
+                        mInterstitialAd.show();
+                    }
+
+                    @Override
+                    public void onAdClicked(Ad ad) {
+
+                    }
+
+                    @Override
+                    public void onLoggingImpression(Ad ad) {
+
+                    }
+                });
+                mInterstitialAd.loadAd();
+            }
         }
         else {
             super.onBackPressed();
         }
 
+    }
+
+    private void hideProgressbar(){
+        if(progressForAds.isShowing())
+            progressForAds.hide();
     }
 
     public void onPressingBack(){

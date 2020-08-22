@@ -1,6 +1,7 @@
 package com.asisdroid.imagecoloridentifier;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -96,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
     private String selectedColorCode = "";
     private int selected_rgb[] = new int[3];
 
+    public ProgressDialog progressForAds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +106,13 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_multi_color_picker_view_example);
 
+        progressForAds = new ProgressDialog(this);
+        progressForAds.setMessage("Loading Ad..");
+        progressForAds.setCanceledOnTouchOutside(false);
+        progressForAds.setCancelable(false);
+
         mInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_interstitial_placementid));
+        mInterstitialAd.loadAd();
 
         clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         textView = findViewById(R.id.textView0);
@@ -129,43 +138,78 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checkInternetConenction()){
-                    mInterstitialAd.setAdListener(new InterstitialAdListener() {
-                        @Override
-                        public void onInterstitialDisplayed(Ad ad) {
-                            Log.e(TAG, "Interstitial ad displayed.");
-                            mInterstitialAd.loadAd();
-                        }
+                    if(mInterstitialAd.isAdLoaded()){
+                        mInterstitialAd.show();
+                        mInterstitialAd.setAdListener(new InterstitialAdListener() {
+                            @Override
+                            public void onInterstitialDisplayed(Ad ad) {
 
-                        @Override
-                        public void onInterstitialDismissed(Ad ad) {
-                            Log.e(TAG, "Interstitial ad dismissed.");
-                            askPermissions();
-                        }
+                            }
 
-                        @Override
-                        public void onError(Ad ad, AdError adError) {
-                            Log.e(TAG, "Interstitial ad failed to load: " + adError.getErrorMessage());
-                            askPermissions();
-                        }
+                            @Override
+                            public void onInterstitialDismissed(Ad ad) {
+                                askPermissions();
+                            }
 
-                        @Override
-                        public void onAdLoaded(Ad ad) {
-                            Log.d(TAG, "Interstitial ad is loaded and ready to be displayed!");
-                            // Show the ad
-                            mInterstitialAd.show();
-                        }
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+                                askPermissions();
+                            }
 
-                        @Override
-                        public void onAdClicked(Ad ad) {
-                            Log.d(TAG, "Interstitial ad clicked!");
-                        }
+                            @Override
+                            public void onAdLoaded(Ad ad) {
 
-                        @Override
-                        public void onLoggingImpression(Ad ad) {
-                            Log.d(TAG, "Interstitial ad impression logged!");
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+
+                            }
+                        });
+                    }
+                    else{
+                        if(!progressForAds.isShowing()) {
+                            progressForAds.show();
                         }
-                    });
-                    mInterstitialAd.loadAd();
+                        mInterstitialAd.setAdListener(new InterstitialAdListener() {
+                            @Override
+                            public void onInterstitialDisplayed(Ad ad) {
+                            }
+
+                            @Override
+                            public void onInterstitialDismissed(Ad ad) {
+                                hideProgressbar();
+                                askPermissions();
+                            }
+
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+                                hideProgressbar();
+                                askPermissions();
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                mInterstitialAd.show();
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+
+                            }
+                        });
+                        mInterstitialAd.loadAd();
+                    }
                 }
                 else {
                     askPermissions();
@@ -212,6 +256,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //initColorNameHashMap();
+    }
+
+    private void hideProgressbar(){
+        if(progressForAds.isShowing())
+            progressForAds.hide();
     }
 
     private ColorListener colorListener0  = new ColorListener () {
