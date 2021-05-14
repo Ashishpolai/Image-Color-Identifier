@@ -6,6 +6,18 @@
     android:background="@color/background"
     >
 
+    <!--ADS LAYOUT-->
+    <fragment
+        android:name="com.asisdroid.imagecoloridentifier.FragmentAd"
+        android:id="@+id/fragment_ads"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
     <!--GAMEZOP ADS LAYOUT-->
     <fragment
         android:id="@+id/fragment_adzop_ad"
@@ -32,26 +44,26 @@
         android:id="@+id/multiColorPickerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:layout_alignParentTop="true"
         android:layout_above="@+id/btmLayout"
+        android:layout_below="@id/fragment_ads"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         />
 
 
         <RelativeLayout
             android:id="@+id/btmLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/btn_changeimg"
             android:layout_alignParentBottom="true">
 
             <LinearLayout
                 android:id="@+id/linearLayout0"
                 android:layout_width="155dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="match_parent"
                 android:background="@android:color/white"
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal"
@@ -75,14 +87,14 @@
         android:id="@+id/btn_changeimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change\nimage"
-        android:padding="10dp"
+        android:text="Change image"
+        android:padding="8dp"
         android:layout_toLeftOf="@+id/btmLayout"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:background="@color/buttonColor"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:fontFamily="serif-monospace"
         />
 
@@ -90,16 +102,16 @@
         android:id="@+id/textView0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="@android:color/white"
         android:textColor="@color/colorAccent"
         android:gravity="center"
         android:layout_toRightOf="@+id/btmLayout"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/btn_changeimg"
         android:padding="10dp"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:background="@color/buttonColor"
         android:fontFamily="serif-monospace"
         />

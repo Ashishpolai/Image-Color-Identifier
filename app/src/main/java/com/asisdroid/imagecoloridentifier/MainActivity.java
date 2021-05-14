@@ -44,8 +44,6 @@ import com.asisdroid.colorpickerview.MultiColorPickerView;*/
 
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
-import com.facebook.ads.InterstitialAd;
-import com.facebook.ads.InterstitialAdListener;
 import com.skydoves.multicolorpicker.ColorEnvelope;
 import com.skydoves.multicolorpicker.MultiColorPickerView;
 import com.skydoves.multicolorpicker.listeners.ColorListener;
@@ -89,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 041;
     private static final int GALLERY_REQUEST_CODE = 032;
     private static final String SHOWCASE_ID = "first time opendfdasdsdfjsdkjfksdj";
-    public static InterstitialAd mInterstitialAd;
 
     public ColorDBAdpater colorNameDB;
     LinearLayout linearLayout;
@@ -110,9 +107,6 @@ public class MainActivity extends AppCompatActivity {
         progressForAds.setMessage("Loading Ad..");
         progressForAds.setCanceledOnTouchOutside(false);
         progressForAds.setCancelable(false);
-
-        mInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_interstitial_placementid));
-        mInterstitialAd.loadAd();
 
         clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         textView = findViewById(R.id.textView0);
@@ -137,83 +131,7 @@ public class MainActivity extends AppCompatActivity {
         btnChngeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkInternetConenction()){
-                    if(mInterstitialAd.isAdLoaded()){
-                        mInterstitialAd.show();
-                        mInterstitialAd.setAdListener(new InterstitialAdListener() {
-                            @Override
-                            public void onInterstitialDisplayed(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onInterstitialDismissed(Ad ad) {
-                                askPermissions();
-                            }
-
-                            @Override
-                            public void onError(Ad ad, AdError adError) {
-                                askPermissions();
-                            }
-
-                            @Override
-                            public void onAdLoaded(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onAdClicked(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onLoggingImpression(Ad ad) {
-
-                            }
-                        });
-                    }
-                    else{
-                        if(!progressForAds.isShowing()) {
-                            progressForAds.show();
-                        }
-                        mInterstitialAd.setAdListener(new InterstitialAdListener() {
-                            @Override
-                            public void onInterstitialDisplayed(Ad ad) {
-                            }
-
-                            @Override
-                            public void onInterstitialDismissed(Ad ad) {
-                                hideProgressbar();
-                                askPermissions();
-                            }
-
-                            @Override
-                            public void onError(Ad ad, AdError adError) {
-                                hideProgressbar();
-                                askPermissions();
-                            }
-
-                            @Override
-                            public void onAdLoaded(Ad ad) {
-                                mInterstitialAd.show();
-                            }
-
-                            @Override
-                            public void onAdClicked(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onLoggingImpression(Ad ad) {
-
-                            }
-                        });
-                        mInterstitialAd.loadAd();
-                    }
-                }
-                else {
-                    askPermissions();
-                }
+                askPermissions();
             }
         });
 
