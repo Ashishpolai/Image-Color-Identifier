@@ -33,10 +33,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.ads.Ad;
-import com.facebook.ads.AdError;
-import com.facebook.ads.InterstitialAd;
-import com.facebook.ads.InterstitialAdListener;
+import com.ironsource.mediationsdk.IronSource;
+import com.ironsource.mediationsdk.integration.IntegrationHelper;
+import com.ironsource.mediationsdk.logger.IronSourceError;
+import com.ironsource.mediationsdk.sdk.InterstitialListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,8 +55,6 @@ public class AllColorActivity extends Activity {
     private ArrayList<String> colorNameList, colorCodeList, colorRgbList;
 
     private ClipboardManager clipboard;
-
-    public static InterstitialAd mInterstitialAd;
 
 
     private ImageView btnBack;
@@ -79,8 +77,49 @@ public class AllColorActivity extends Activity {
         progressForAds.setCanceledOnTouchOutside(false);
         progressForAds.setCancelable(false);
 
-        mInterstitialAd = new InterstitialAd(this, getResources().getString(R.string.fb_interstitial_placementid));
-        mInterstitialAd.loadAd();
+        /**
+         *Ad Units should be in the type of IronSource.Ad_Unit.AdUnitName, example
+         */
+        IronSource.init(this, getResources().getString(R.string.ironsource_app_key),  IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.BANNER);
+
+        IronSource.setInterstitialListener(new InterstitialListener() {
+            @Override
+            public void onInterstitialAdReady() {
+                hideProgressbar();
+                IronSource.showInterstitial("Startup");
+            }
+
+            @Override
+            public void onInterstitialAdLoadFailed(IronSourceError ironSourceError) {
+                hideProgressbar();
+            }
+
+            @Override
+            public void onInterstitialAdOpened() {
+            }
+
+            @Override
+            public void onInterstitialAdClosed() {
+                finish();
+            }
+
+            @Override
+            public void onInterstitialAdShowSucceeded() {
+
+            }
+
+            @Override
+            public void onInterstitialAdShowFailed(IronSourceError ironSourceError) {
+
+            }
+
+            @Override
+            public void onInterstitialAdClicked() {
+
+            }
+        });
+
+        IntegrationHelper.validateIntegration(this);
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading colors...");
@@ -243,78 +282,8 @@ public class AllColorActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(checkInternetConenction()){
-            if(mInterstitialAd.isAdLoaded()){
-                mInterstitialAd.show();
-                mInterstitialAd.setAdListener(new InterstitialAdListener() {
-                    @Override
-                    public void onInterstitialDisplayed(Ad ad) {
-
-                    }
-
-                    @Override
-                    public void onInterstitialDismissed(Ad ad) {
-                        finish();
-                    }
-
-                    @Override
-                    public void onError(Ad ad, AdError adError) {
-                        finish();
-                    }
-
-                    @Override
-                    public void onAdLoaded(Ad ad) {
-
-                    }
-
-                    @Override
-                    public void onAdClicked(Ad ad) {
-
-                    }
-
-                    @Override
-                    public void onLoggingImpression(Ad ad) {
-
-                    }
-                });
-            }
-            else{
-                if(!progressForAds.isShowing()) {
-                    progressForAds.show();
-                }
-                mInterstitialAd.setAdListener(new InterstitialAdListener() {
-                    @Override
-                    public void onInterstitialDisplayed(Ad ad) {
-                    }
-
-                    @Override
-                    public void onInterstitialDismissed(Ad ad) {
-                        hideProgressbar();
-                        finish();
-                    }
-
-                    @Override
-                    public void onError(Ad ad, AdError adError) {
-                        hideProgressbar();
-                        finish();
-                    }
-
-                    @Override
-                    public void onAdLoaded(Ad ad) {
-                        mInterstitialAd.show();
-                    }
-
-                    @Override
-                    public void onAdClicked(Ad ad) {
-
-                    }
-
-                    @Override
-                    public void onLoggingImpression(Ad ad) {
-
-                    }
-                });
-                mInterstitialAd.loadAd();
-            }
+            progressForAds.show();
+            IronSource.loadInterstitial();
         }
         else {
             super.onBackPressed();

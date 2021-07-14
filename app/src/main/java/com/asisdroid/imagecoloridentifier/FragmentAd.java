@@ -5,48 +5,77 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.facebook.ads.AdSize;
-import com.facebook.ads.AdView;
+import com.ironsource.mediationsdk.ISBannerSize;
+import com.ironsource.mediationsdk.IronSource;
+import com.ironsource.mediationsdk.IronSourceBannerLayout;
+import com.ironsource.mediationsdk.logger.IronSourceError;
+import com.ironsource.mediationsdk.sdk.BannerListener;
 
 import androidx.fragment.app.Fragment;
 
 public class FragmentAd extends Fragment {
 
-	//private AdView mAdView;
-	private AdView adView;;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//		    View view = inflater.inflate(R.layout.fragment_ad,
-//		        container, false);
-//			MobileAds.initialize(getActivity(), getResources().getString(R.string.admobappID));
-//			mAdView = (AdView) view.findViewById(R.id.adView);
-//			AdRequest adRequest = new AdRequest.Builder().build();
-//			mAdView.loadAd(adRequest);
-//		    return view;
 
 		View view = inflater.inflate(R.layout.fragment_ad,
 		        container, false);
-		adView = new AdView(getContext(), getResources().getString(R.string.fb_banner_placementid), AdSize.BANNER_HEIGHT_50);
+		IronSource.init(getActivity(), getActivity().getResources().getString(R.string.ironsource_app_key), IronSource.AD_UNIT.BANNER);
 
-		// Find the Ad Container
-		LinearLayout adContainer = (LinearLayout) view.findViewById(R.id.adView);
+		final FrameLayout bannerContainer = view.findViewById(R.id.bannerContainer);
+		IronSourceBannerLayout banner = IronSource.createBanner(getActivity(), ISBannerSize.BANNER);
+		FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.WRAP_CONTENT);
+		bannerContainer.addView(banner, 0, layoutParams);
 
-		// Add the ad view to your activity layout
-		adContainer.addView(adView);
+		banner.setBannerListener(new BannerListener() {
+			@Override
+			public void onBannerAdLoaded() {
+				// Called after a banner ad has been successfully loaded
+			}
 
-		// Request an ad
-		adView.loadAd();
+			@Override
+			public void onBannerAdLoadFailed(IronSourceError error) {
+				// Called after a banner has attempted to load an ad but failed.
+				getActivity().runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						bannerContainer.removeAllViews();
+					}
+				});
+			}
+
+			@Override
+			public void onBannerAdClicked() {
+				// Called after a banner has been clicked.
+			}
+
+			@Override
+			public void onBannerAdScreenPresented() {
+				// Called when a banner is about to present a full screen content.
+			}
+
+			@Override
+			public void onBannerAdScreenDismissed() {
+				// Called after a full screen content has been dismissed
+			}
+
+			@Override
+			public void onBannerAdLeftApplication() {
+				// Called when a user would be taken out of the application context.
+			}
+		});
+
+		IronSource.loadBanner(banner, "Startup");
 		return view;
 	}
 
 	@Override
 	public void onDestroyView() {
-		if (adView != null) {
-			adView.destroy();
-		}
 		super.onDestroyView();
 	}
 }

@@ -42,8 +42,6 @@ import android.widget.Toast;
 import com.asisdroid.colorpickerview.ColorListener;
 import com.asisdroid.colorpickerview.MultiColorPickerView;*/
 
-import com.facebook.ads.Ad;
-import com.facebook.ads.AdError;
 import com.skydoves.multicolorpicker.ColorEnvelope;
 import com.skydoves.multicolorpicker.MultiColorPickerView;
 import com.skydoves.multicolorpicker.listeners.ColorListener;

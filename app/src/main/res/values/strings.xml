@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Image color identifier</string>
 
+    <string name="ironsource_app_key">a4bb87ad</string>
     <string name="facebook_app_id">838254213374146</string>
     <string name="fb_login_protocol_scheme">fb838254213374146</string>
     <string name="fb_banner_placementid">838254213374146_838259820040252</string>
