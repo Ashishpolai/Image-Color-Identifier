@@ -2255,7 +2255,16 @@ public class MainActivity extends AppCompatActivity {
 
         sequence.setConfig(config);
 
-        sequence.addSequenceItem(findViewById(R.id.btn_changeimg), "Tap anywhere on the image to identify the color instantly. Tap on change image to upload your own image.", "OK");
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(findViewById(R.id.btn_changeimg))
+                        .setTitleText("CUSTOM IMAGE")
+                        .setContentText("Tap anywhere on the image to identify the color instantly. Tap on change image to upload your own image.")
+                        .withCircleShape()
+                        .setDismissOnTargetTouch(true)
+                        .setDismissOnTouch(true)
+                        .build()
+        );
 
         sequence.addSequenceItem(
                 new MaterialShowcaseView.Builder(this)
